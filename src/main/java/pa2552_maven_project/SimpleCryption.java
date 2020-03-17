@@ -4,12 +4,7 @@ import java.lang.String;
 
 public class SimpleCryption {
 	String encrypted_file_name = "encryped.txt";
-	
-	public static void main(String[] args) {
-		//SimpleCryption obj = new SimpleCryption();
-		System.out.println("I HAVE AWOKEN!");
-	}
-	
+		
 	//Functions
 	public String EinsteinLevelEncryption(String msg) {
 		
