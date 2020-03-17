@@ -3,7 +3,7 @@ package pa2552_maven_project;
 import java.lang.String;
 
 public class SimpleCryption {
-	String encrypted_file_name = "encryped.txt";
+	String encrypted_file_name = "encryped_file.txt";
 		
 	//Functions
 	public String EinsteinLevelEncryption(String msg) {
