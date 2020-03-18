@@ -12,8 +12,8 @@ public class SimpleCryption {
 			int a = (int) msg.charAt(i);
 			
 			if(a >= 64 && a <=122) {
-				a += 1;
-				if (a == 123) {a = 64;}
+				a += 4;
+				if (a > 122) {a = 64;}
 			}
 			
 			msg = msg.substring(0, i) + (char)a + msg.substring(i+1);
