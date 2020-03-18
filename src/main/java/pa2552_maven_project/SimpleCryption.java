@@ -12,7 +12,7 @@ public class SimpleCryption {
 			int a = (int) msg.charAt(i);
 			
 			if(a >= 64 && a <=122) {
-				a += 2;
+				a += 1;
 				if (a > 122) {a = 64;}
 			}
 			
