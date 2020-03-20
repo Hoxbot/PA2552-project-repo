@@ -137,7 +137,7 @@ public class SimpleCryption_TestDecryptString {
 		//Test what happens if a message isn't containing a proper ascii string
 		//>The program should ignore the sign as it lies outside lower bound
 		
-		int x = -3;
+		int x = -1;
 		String msg = "" + (char)x;
 		
 		//Check that this type of string can be decrypted
