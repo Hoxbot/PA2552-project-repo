@@ -10,5 +10,5 @@ import org.junit.runners.Suite.SuiteClasses;
 	TestSimpleCryption_EncryptString.class 	//2
 	})
 public class AllTests {
-
+	//
 }
