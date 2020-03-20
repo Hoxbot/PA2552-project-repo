@@ -7,7 +7,7 @@ public class Main {
 		
 		String wake_msg = "I HAVE AWOKEN!\n";
 		System.out.println(wake_msg);
-		System.out.println(obj.EinsteinLevelEncryption(wake_msg));
+		System.out.println(obj.EncryptString(wake_msg));
 	}
 	
 }

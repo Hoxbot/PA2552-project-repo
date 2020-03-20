@@ -6,21 +6,12 @@ public class SimpleCryption {
 	String encrypted_file_name = "encryped.txt";
 		
 	//Functions
-	public String EinsteinLevelEncryption(String msg) {
-		
-		for(int i = 0; i<msg.length(); i++) {
-			int a = (int) msg.charAt(i);
-			
-			if(a >= 64 && a <=122) {
-				a += 2;
-				if (a > 122) {a = 64;}
-			}
-			
-			msg = msg.substring(0, i) + (char)a + msg.substring(i+1);
-			
-		}
-			
-		return msg;
+	public String EncryptString(String in_msg) {
+		return null;
+	}
+	
+	public String DecryptString(String in_msg) {
+		return null;
 	}
 	
 }
