@@ -15,7 +15,7 @@ import org.junit.runners.MethodSorters;
 import java.util.Random;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class SimpleCryption_TestDecryptString {
+public class TestSimpleCryption_DecryptString {
 
 	//Instances-----------------------------------------------------------------
     private SimpleCryption cut;

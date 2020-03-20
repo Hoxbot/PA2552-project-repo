@@ -6,8 +6,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ 
-	SimpleCryption_TestDecryptString.class, //1 
-	SimpleCryption_TestEncryptString.class 	//2
+	TestSimpleCryption_DecryptString.class, //1 
+	TestSimpleCryption_EncryptString.class 	//2
 	})
 public class AllTests {
 
