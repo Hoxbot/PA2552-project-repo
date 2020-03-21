@@ -74,13 +74,24 @@ public class TestSimpleCryption_EncryptString {
 		
 		String msg = "";
 		
+		//Try all ascii signs in legal range
 		for(int i = 32; i < 127; i++) {
-			//Try all common ascii signs
+			//Generate single sign string
 			msg = "" + (char)i;
 			
+			//Encrypt
 			String enc_msg = cut.EncryptString(msg);
 			
-			assertEquals((int)(msg.charAt(0)), (int)(enc_msg.charAt(0)));
+			//Translate to ascii
+			int a_ascii = (int)(msg.charAt(0));
+			int b_ascii = (int)enc_msg.charAt(0) - 1;	//Offset it one back.
+			if(b_ascii == 31) {b_ascii = 126;};			//Handle special case.
+														//Note that it ONLY handles the 31 case.
+														//This should prevent the test from by 
+														//itself correcting out of bounds errors.
+			
+			//Assert equality
+			assertEquals( a_ascii, b_ascii);
 		}
 		
 	}
@@ -100,52 +111,73 @@ public class TestSimpleCryption_EncryptString {
 	@Test
 	public void Test04_OutsideLowerBound() {
 		//Test what happens if string contains a random sign out of the lower ascii bound
-		//>The character should not be affected
+		//>All signs but the one out of bound should be changed
+		//>Length of string should be the same
 		
+		//Create a normal string
 		String msg = "abcdef";
 		
+		//Add a "illegal" ascii sign at index x
 		int x = rand.nextInt(31)+0;
+		int index_x = 2;
+		msg = msg.substring(0,index_x) + (char)x + msg.substring(index_x);
 		
-		msg = msg.substring(0,2) + (char)x + msg.substring(3);
-		
+		//Encrypt
 		String enc_msg = cut.EncryptString(msg);
 		
-		assertEquals(x, (int)(enc_msg.charAt(3)));
+		//Assert that the lengths are the same
+		assertEquals(msg.length(), enc_msg.length());
+		
+		//Assert that all signs not at index x are different
+		//and that index x is the same  
+		for(int i = 0; i < msg.length(); i++) {
+			if(i != index_x) {assertNotEquals(msg.charAt(i), enc_msg.charAt(i));}
+			else {assertEquals(msg.charAt(i), enc_msg.charAt(i));}
+		}
+		
 	}
 	
 	@Test
 	public void Test05_OutsideHigherBound() {
 		//Test what happens if string contains a random sign out of the higher ascii bound
-		//>The character should not be affected
+		//>All signs but the one out of bound should be changed
+		//>Length of string should be the same
 		
+		//Create a normal string
 		String msg = "abcdef";
 		
+		//Add a "illegal" ascii sign at index x
 		int x = 127;
+		int index_x = 2;
+		msg = msg.substring(0,index_x) + (char)x + msg.substring(index_x);
 		
-		msg = msg.substring(0,2) + (char)x + msg.substring(3);
-		
+		//Encrypt
 		String enc_msg = cut.EncryptString(msg);
 		
-		assertEquals(x, (int)(enc_msg.charAt(3)));
+		//Assert that the lengths are the same
+		assertEquals(msg.length(), enc_msg.length());
+		
+		//Assert that all signs not at index x are different
+		//and that index x is the same  
+		for(int i = 0; i < msg.length(); i++) {
+			if(i != index_x) {assertNotEquals(msg.charAt(i), enc_msg.charAt(i));}
+			else {assertEquals(msg.charAt(i), enc_msg.charAt(i));}
+		}
 	}
 	
-			//NTS: Negative ascii?
 	@Test
 	public void Test06_SadPath() {
 		//Test what happens if a message isn't containing a proper ascii string
 		//(-1 isn't on the ascii table)
-		//>The program should ignore the sign as it lies outside lower bound
-		//>(In this case Java seems to translate it to a number)
+		//>The program should ignore encrypting the sign as it lies outside lower bound
 		
 		int x = -1;
 		
 		String msg = "" + (char)x;
 		
-		//System.out.println(x + " " + (char)90);
-		
 		String enc_msg = cut.EncryptString(msg);
 		
-		assertEquals(x, (int)(enc_msg.charAt(0)));
+		assertEquals(msg, enc_msg);
 	}
 	
 
