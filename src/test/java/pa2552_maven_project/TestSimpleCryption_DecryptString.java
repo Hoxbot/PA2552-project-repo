@@ -133,7 +133,7 @@ public class TestSimpleCryption_DecryptString {
 	}
 	
 	@Test
-	public void Test05_SadPath() {
+	public void Test06_SadPath() {
 		//Test what happens if a message isn't containing a proper ascii string
 		//>The program should ignore the sign as it lies outside lower bound
 		
@@ -147,7 +147,9 @@ public class TestSimpleCryption_DecryptString {
 	//Support Functions---------------------------------------------------------
 	private void AssertEncryptDecryptSame(String in_msg) {
 		String enc_msg = cut.EncryptString(in_msg);
-		assertEquals(in_msg, enc_msg);
+		String org_msg = cut.DecryptString(enc_msg);
+		
+		assertEquals(in_msg, org_msg);
 	}
 
 }
