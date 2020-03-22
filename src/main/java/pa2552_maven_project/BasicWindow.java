@@ -2,6 +2,7 @@ package pa2552_maven_project;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -69,6 +70,10 @@ public class BasicWindow implements ActionListener {
 		//Update window
 		win.setVisible(true);
 		win.repaint();
+	}
+	
+	public void CloseWindow() {
+		win.dispatchEvent(new WindowEvent(win, WindowEvent.WINDOW_CLOSING));
 	}
 	
 	public void actionPerformed(ActionEvent e) {
