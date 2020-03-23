@@ -1,4 +1,6 @@
+/*
 package pa2552_maven_project;
+
 
 //JUnit
 import static org.junit.Assert.*;
@@ -175,3 +177,4 @@ public class TestBasicWindow_PaintWindow {
         return match;
     }
 }
+*/
