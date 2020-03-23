@@ -13,7 +13,7 @@ import org.junit.runners.MethodSorters;
 
 //Java
 //import java.util.Random;
-import java.awt.image.BufferedImage;
+//import java.awt.image.BufferedImage;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestBasicWindow_PaintWindow_Eyeless {
