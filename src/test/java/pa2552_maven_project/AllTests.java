@@ -12,5 +12,5 @@ import org.junit.runners.Suite.SuiteClasses;
 	TestBasicWindow_PaintWindow_Eyeless.class		//4
 	})
 public class AllTests {
-	//a
+	//
 }
