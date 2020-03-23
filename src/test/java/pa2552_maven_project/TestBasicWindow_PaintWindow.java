@@ -1,4 +1,3 @@
-/*
 package pa2552_maven_project;
 
 
@@ -177,4 +176,3 @@ public class TestBasicWindow_PaintWindow {
         return match;
     }
 }
-*/
