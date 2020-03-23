@@ -21,6 +21,7 @@ public class TestBasicWindow_PaintWindow_Eyeless {
 	//Instances-----------------------------------------------------------------
     private static BasicWindow cut;
     private static SimpleCryption crpt;
+    
     //private Random rand = new Random();
     
     //Management----------------------------------------------------------------
