@@ -8,7 +8,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ 
 	TestSimpleCryption_DecryptString.class, //1 
 	TestSimpleCryption_EncryptString.class,	//2
-	TestBasicWindow_PaintWindow.class		//3
+	TestBasicWindow_PaintWindow_Eyeless.class		//3
 	})
 public class AllTests {
 	//
