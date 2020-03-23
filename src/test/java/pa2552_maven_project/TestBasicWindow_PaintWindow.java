@@ -23,8 +23,7 @@ import java.awt.image.BufferedImage;
 public class TestBasicWindow_PaintWindow {
 
 	//Instances-----------------------------------------------------------------
-    private static BasicWindow cut_arr[] = {null, null, null, null};
-    int current_test_number = 0;
+    private static BasicWindow cut;
     private static Eye eye;
     //private Random rand = new Random();
     
@@ -34,6 +33,9 @@ public class TestBasicWindow_PaintWindow {
     public static void SetUp(){
         //
     	eye = new Eye();
+    	
+    	cut = new BasicWindow();
+    	cut.PaintWindow();
     }
     
     //NTS: @AfterClass = Used to clean up after a @BeforeClass function
@@ -42,19 +44,16 @@ public class TestBasicWindow_PaintWindow {
         //
     	eye = null;
     	
-    	for(int i = 0; i < cut_arr.length; i++) {
-    		if (cut_arr[i] != null) { cut_arr[i].CloseWindow(); }
-    		cut_arr[i] = null;
-    	}
+    	//cut.CloseWindow(); <- Prevents tests from finishing?
+    		//NTS: Not needed anyway. JUnit closes the program.
     	
+    	cut = null;
     }
     
     //NTS: @Before = Done before each test
     @Before
     public void InitTest() throws Exception {
         //
-    	cut_arr[current_test_number] = new BasicWindow();
-    	cut_arr[current_test_number].PaintWindow();
     }
     
     //NTS: @After = Done after each test
@@ -62,7 +61,8 @@ public class TestBasicWindow_PaintWindow {
     public void CleanUpTest() throws Exception {
     	//cut.CloseWindow(); <- Actually ends program execution
         //cut = null;
-    	current_test_number++;
+    	cut.input_box.setText("");
+    	cut.output_box.setText("");
     }
     
     //Tests---------------------------------------------------------------------
@@ -81,10 +81,9 @@ public class TestBasicWindow_PaintWindow {
 		eye.type("Jamalahejochmendu");
 		eye.move(m1.getCenterRelativeLocation(-200,-200));
 		
-		//Try to find the empty field again (there should be none)
-		Match m2 = FindMatchOnScreen("img_rec/img_input_field.png");
-		assertEquals(null, m2);
-		
+		//Check that the field has an entry
+		String entry = cut.input_box.getText();
+		assertNotEquals(0, entry.length());
 		
 	}
 	
@@ -103,9 +102,9 @@ public class TestBasicWindow_PaintWindow {
 		eye.type("Nejmenhalloochkansen");
 		eye.move(m1.getCenterRelativeLocation(-200,-200));
 				
-		//Try to find the empty field again (should still be there)
-		Match m2 = FindMatchOnScreen("img_rec/img_output_field.png");
-		assertNotEquals(null, m2);
+		//Check that the field has no entry
+		String entry = cut.input_box.getText();
+		assertEquals(0, entry.length());
 	}
 	
 	@Test
@@ -118,11 +117,15 @@ public class TestBasicWindow_PaintWindow {
 		assertNotEquals(null, m1);
 				
 		//Move mouse, click on it and input text
-		eye.click(m1.getCenterLocation());
-		eye.type("What is the hardest part\nof a vegetable to eat?");
+		//eye.click(m1.getCenterLocation());
+		//eye.type("What is the hardest part\nof a vegetable to eat?");
+		
+		//NTS: Eye's type() functions seems to have trouble with
+		//non-letter signs :/
+		cut.input_box.setText("What is the hardest part\nof a vegetable to eat?");
 				
 		//Click on encrypt
-		Match m2 = FindMatchOnScreen("img_rec/img_encrypt_button.png");
+		Match m2 = FindMatchOnScreen("img_rec/img_encrypt_button2.png");
 		eye.click(m2.getCenterLocation());
 		
 		//Verify things happened
@@ -140,11 +143,15 @@ public class TestBasicWindow_PaintWindow {
 		assertNotEquals(null, m1);
 						
 		//Move mouse, click on it and input text
-		eye.click(m1.getCenterLocation());
-		eye.type("fou6NW]cpt} *=k,f");
-						
+		//eye.click(m1.getCenterLocation());
+		//eye.type("fou6NW]cpt} *=k,f");
+		
+		//NTS: Eye's type() functions seems to have trouble with
+		//non-letter signs :/
+		cut.input_box.setText("fou6NW]cpt} *=k,f:");
+		
 		//Click on encrypt
-		Match m2 = FindMatchOnScreen("img_rec/img_decrypt_button.png");
+		Match m2 = FindMatchOnScreen("img_rec/img_decrypt_button2.png");
 		eye.click(m2.getCenterLocation());
 				
 		//Verify things happened
